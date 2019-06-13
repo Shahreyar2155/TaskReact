@@ -1,22 +1,20 @@
-import React from "react";
-import {Route, Redirect} from "react-router-dom";
-import {connect} from "react-redux";
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const GuestRoute = ({isAuthenticated, component: Component, ...rest}) => (
-    <Route
-        {...rest}
-        render={props =>
-            !isAuthenticated ? <Component {...props} /> : <Redirect to="/LoggedIn"/>
-        }
-    />
+const GuestRoute = ({ isAuthenticated, component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      !isAuthenticated ? <Component {...props} /> : <Redirect to="/loggedin" />
+    }
+  />
 );
 
-
-
 function mapStateToProps(state) {
-    return {
-        isAuthenticated: !!state.user.token
-    };
+  return {
+    isAuthenticated: !!state.user.token
+  };
 }
 
 export default connect(mapStateToProps)(GuestRoute);
